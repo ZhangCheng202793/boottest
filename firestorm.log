@@ -1,0 +1,56 @@
+DEBUG main druid.sql.Connection - {conn-10001} connected
+DEBUG main druid.sql.Statement - {conn-10001, stmt-20000} created
+DEBUG main druid.sql.Statement - {conn-10001, stmt-20000, rs-50000} query executed. 58.739526 millis. 
+SELECT 1 FROM DUAL
+DEBUG main druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} open
+DEBUG main druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Header: [1]
+DEBUG main druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} Result: [1]
+DEBUG main druid.sql.ResultSet - {conn-10001, stmt-20000, rs-50000} closed
+DEBUG main druid.sql.Statement - {conn-10001, stmt-20000} closed
+DEBUG main druid.sql.Connection - {conn-10002} connected
+DEBUG main druid.sql.Statement - {conn-10002, stmt-20001} created
+DEBUG main druid.sql.Statement - {conn-10002, stmt-20001, rs-50001} query executed. 4.315462 millis. 
+SELECT 1 FROM DUAL
+DEBUG main druid.sql.ResultSet - {conn-10002, stmt-20001, rs-50001} open
+DEBUG main druid.sql.ResultSet - {conn-10002, stmt-20001, rs-50001} Header: [1]
+DEBUG main druid.sql.ResultSet - {conn-10002, stmt-20001, rs-50001} Result: [1]
+DEBUG main druid.sql.ResultSet - {conn-10002, stmt-20001, rs-50001} closed
+DEBUG main druid.sql.Statement - {conn-10002, stmt-20001} closed
+DEBUG main druid.sql.Connection - {conn-10003} connected
+DEBUG main druid.sql.Statement - {conn-10003, stmt-20002} created
+DEBUG main druid.sql.Statement - {conn-10003, stmt-20002, rs-50002} query executed. 3.965603 millis. 
+SELECT 1 FROM DUAL
+DEBUG main druid.sql.ResultSet - {conn-10003, stmt-20002, rs-50002} open
+DEBUG main druid.sql.ResultSet - {conn-10003, stmt-20002, rs-50002} Header: [1]
+DEBUG main druid.sql.ResultSet - {conn-10003, stmt-20002, rs-50002} Result: [1]
+DEBUG main druid.sql.ResultSet - {conn-10003, stmt-20002, rs-50002} closed
+DEBUG main druid.sql.Statement - {conn-10003, stmt-20002} closed
+DEBUG main druid.sql.Connection - {conn-10004} connected
+DEBUG main druid.sql.Statement - {conn-10004, stmt-20003} created
+DEBUG main druid.sql.Statement - {conn-10004, stmt-20003, rs-50003} query executed. 3.770158 millis. 
+SELECT 1 FROM DUAL
+DEBUG main druid.sql.ResultSet - {conn-10004, stmt-20003, rs-50003} open
+DEBUG main druid.sql.ResultSet - {conn-10004, stmt-20003, rs-50003} Header: [1]
+DEBUG main druid.sql.ResultSet - {conn-10004, stmt-20003, rs-50003} Result: [1]
+DEBUG main druid.sql.ResultSet - {conn-10004, stmt-20003, rs-50003} closed
+DEBUG main druid.sql.Statement - {conn-10004, stmt-20003} closed
+DEBUG main druid.sql.Connection - {conn-10005} connected
+DEBUG main druid.sql.Statement - {conn-10005, stmt-20004} created
+DEBUG main druid.sql.Statement - {conn-10005, stmt-20004, rs-50004} query executed. 14.349601 millis. 
+SELECT 1 FROM DUAL
+DEBUG main druid.sql.ResultSet - {conn-10005, stmt-20004, rs-50004} open
+DEBUG main druid.sql.ResultSet - {conn-10005, stmt-20004, rs-50004} Header: [1]
+DEBUG main druid.sql.ResultSet - {conn-10005, stmt-20004, rs-50004} Result: [1]
+DEBUG main druid.sql.ResultSet - {conn-10005, stmt-20004, rs-50004} closed
+DEBUG main druid.sql.Statement - {conn-10005, stmt-20004} closed
+INFO main com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+DEBUG main druid.sql.Connection - {conn-10005} pool-connect
+DEBUG main druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG main druid.sql.Connection - {conn-10005} pool-connect
+DEBUG main druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG main druid.sql.Connection - {conn-10005} pool-connect
+DEBUG main druid.sql.Statement - {conn-10005, stmt-20005} created
+DEBUG main druid.sql.Statement - {conn-10005, stmt-20005} closed
+DEBUG main druid.sql.Connection - {conn-10005} pool-recycle
+DEBUG main druid.sql.Connection - {conn-10005} pool-connect
+DEBUG main druid.sql.Connection - {conn-10005} pool-recycle
