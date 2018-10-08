@@ -12,7 +12,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 /**
  * DruidDBConfig类被@Configuration标注，用作配置信息； DataSource对象被@Bean声明，为Spring容器所管理，
  * @Primary表示这里定义的DataSource将覆盖其他来源的DataSource。
- * @author zc jdbc.url=${jdbc.url} 最新的支持方式如下: jdbc.url=@jdbc.url@
+ * @author zc
+ * jdbc.url=${jdbc.url} 最新的支持方式如下: jdbc.url=@jdbc.url@
  */
 @Configuration
 public class DruidDBConfig {

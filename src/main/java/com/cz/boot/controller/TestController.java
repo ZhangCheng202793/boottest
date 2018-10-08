@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("")
 public class TestController {
-    //http://localhost:8088/swagger-ui.html
+    //http://localhost:8086/swagger-ui.html
     Logger logger = LoggerFactory.getLogger(this.getClass());
     //测试1
     @ApiOperation(value="打印信息", notes="根据url的str来打印相关信息")

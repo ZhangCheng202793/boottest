@@ -1,4 +1,3 @@
-/*
 package com.cz.boot.dao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -20,6 +19,8 @@ import javax.sql.DataSource;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.cz.boot.utils.Finder;
+import com.cz.boot.utils.PageInfo;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -111,21 +112,12 @@ public class BaseDAO<T> {
 		return object;
 	}
 
-	// */
-/**
-	// * 保存对象
-	// *
-	// * @param o
-	// * @return
-	// *//*
-
-	// public void save(T o) {
-	// if (o != null) {
-	// this.getCurrentSession().persist(o);
-	// }
-	// }
-	//
-
+	 /**
+	 * 保存对象
+	 *
+	 * @param o
+	 * @return
+	 */
 	public T save(T o) {
 		if (o != null) {
 			getCurrentSession().persist(o);
@@ -133,65 +125,55 @@ public class BaseDAO<T> {
 		}
 		return o;
 	}
-	*/
-/**
+	/**
 	 * 删除对象
 	 *
 	 * @param o
-	 *//*
-
+	 */
 	public void delete(T o) {
 		if (o != null) {
 			this.getCurrentSession().remove(o);
 		}
 	}
 
-	*/
-/**
+	/**
 	 * 根据ID删除对象
 	 *
 	 * @param id
-	 *//*
-
+	 */
 	public void deleteById(Serializable id) {
 		T obj = this.findById(id);
 		this.getCurrentSession().remove(obj);
 		this.getCurrentSession().flush();
 	}
 
-	*/
-/**
+	/**
 	 * 修改对象
 	 *
 	 * @param o
-	 *//*
-
+	 */
 	public void update(T o) {
 		if (o != null) {
 			this.getCurrentSession().merge(o);
 		}
 	}
 
-	*/
-/**
+	/**
 	 * 查询对象
 	 *
 	 * @param id
 	 * @return
-	 *//*
-
+	 */
 	public T get(Serializable id) {
 		return this.getCurrentSession().find(clazz, id);
 	}
 
-	*/
-/**
+	/**
 	 * 根据JPQL查询单个对象
 	 *
-	 * @param JPQL
+	 * @param jpql
 	 * @return
-	 *//*
-
+	 */
 	public T get(String jpql) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 
@@ -203,15 +185,13 @@ public class BaseDAO<T> {
 		return null;
 	}
 
-	*/
-/**
+	/**
 	 * 根据本地SQL和参数,返回单个对象,map<String,Object>
 	 *
 	 * @param sql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public Map getBySQL(String sql, Map<String, Object> params)
 			throws Exception {
 		Query q = this.getCurrentSession().createNativeQuery(sql);
@@ -230,14 +210,12 @@ public class BaseDAO<T> {
 		return null;
 	}
 
-	*/
-/**
+	/**
 	 * 根据本地SQL查询单个对象
 	 *
 	 * @param sql
 	 * @return
-	 *//*
-
+	 */
 	public Map getBySQL(String sql) {
 		Query q = this.getCurrentSession().createNativeQuery(sql);
 		q.unwrap(SQLQuery.class).setResultTransformer(
@@ -250,15 +228,13 @@ public class BaseDAO<T> {
 		return null;
 	}
 
-	*/
-/**
+	/**
 	 * 根据jpql和参数查询单个对象
 	 *
-	 * @param JPQL
+	 * @param jpql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public T get(String jpql, Map<String, Object> params) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 		if (params != null && !params.isEmpty()) {
@@ -274,14 +250,12 @@ public class BaseDAO<T> {
 		return null;
 	}
 
-	*/
-/**
+	/**
 	 * 根据ID查询对象
 	 *
 	 * @param id
 	 * @return
-	 *//*
-
+	 */
 	public T findById(Serializable id) {
 		if (null == id || "".equals(id)) {
 			return null;
@@ -290,28 +264,24 @@ public class BaseDAO<T> {
 		}
 	}
 
-	*/
-/**
+	/**
 	 * 根据JPQL查询对象列表
 	 *
-	 * @param JPQL
+	 * @param jpql
 	 * @return
-	 *//*
-
+	 */
 	public List<T> find(String jpql) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 		return q.getResultList();
 	}
 
-	*/
-/**
+	/**
 	 * 根据JPQL和参数查询对象列表
 	 *
 	 * @param jpql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public List<T> find(String jpql, Map<String, Object> params) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 		if (params != null && !params.isEmpty()) {
@@ -322,51 +292,7 @@ public class BaseDAO<T> {
 		return q.getResultList();
 	}
 
-	*/
-/**
-	 * 根据原始SQL和参数查询某页数据
-	 *
-	 * @param sql
-	 * @param params
-	 * @param page
-	 * @param rows
-	 * @return
-	 *//*
-
-//	public List<Map> findListPageSQL(String sql, Map<String, Object> params,
-//									 int page, int rows) {
-//		Query q = this.getCurrentSession().createNativeQuery(sql);
-//		if (params != null && !params.isEmpty()) {
-//			for (String key : params.keySet()) {
-//				q.setParameter(key, params.get(key));
-//			}
-//		}
-//		q.unwrap(SQLQuery.class).setResultTransformer(
-//				Transformers.ALIAS_TO_ENTITY_MAP);
-//		return q.setFirstResult((page - 1) * rows).setMaxResults(rows)
-//				.getResultList();
-//	}
-
-	*/
-/**
-	 * 根据原始SQL查询分页数据
-	 *
-	 * @param sql
-	 * @param page
-	 * @param rows
-	 * @return
-	 *//*
-
-//	public List<Map> findListPageSQL(String sql, int page, int rows) {
-//		Query q = this.getCurrentSession().createNativeQuery(sql);
-//		q.unwrap(SQLQuery.class).setResultTransformer(
-//				Transformers.ALIAS_TO_ENTITY_MAP);
-//		return q.setFirstResult((page - 1) * rows).setMaxResults(rows)
-//				.getResultList();
-//	}
-
-	*/
-/**
+	/**
 	 * 根据jpql和参数查询分页数据
 	 *
 	 * @param jpql
@@ -374,8 +300,7 @@ public class BaseDAO<T> {
 	 * @param page
 	 * @param rows
 	 * @return
-	 *//*
-
+	 */
 	public List<T> find(String jpql, Map<String, Object> params, int page,
 						int rows) {
 		Query q = this.getCurrentSession().createQuery(jpql);
@@ -388,44 +313,38 @@ public class BaseDAO<T> {
 				.getResultList();
 	}
 
-	*/
-/**
+	/**
 	 * 根据jpql查询分页数据
 	 *
 	 * @param jpql
 	 * @param page
 	 * @param rows
 	 * @return
-	 *//*
-
+	 */
 	public List<T> find(String jpql, int page, int rows) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 		return q.setFirstResult((page - 1) * rows).setMaxResults(rows)
 				.getResultList();
 	}
 
-	*/
-/**
+	/**
 	 * 查询总量
 	 *
-	 * @param JPQL
+	 * @param jpql
 	 * @return
-	 *//*
-
+	 */
 	public Long count(String jpql) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 		return (Long) q.getSingleResult();
 	}
 
-	*/
-/**
+	/**
 	 * 带参数的查询总量
 	 *
-	 * @param JPQL
+	 * @param jpql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public Long count(String jpql, Map<String, Object> params) {
 		Query q = this.getCurrentSession().createQuery(jpql);
 		if (params != null && !params.isEmpty()) {
@@ -436,28 +355,24 @@ public class BaseDAO<T> {
 		return (Long) q.getSingleResult();
 	}
 
-	*/
-/**
-	 * 执行JPQL
+	/**
+	 * 执行jqpl
 	 *
-	 * @param JPQL
+	 * @param jqpl
 	 * @return
-	 *//*
-
+	 */
 	public int executeHql(String jqpl) {
 		Query q = this.getCurrentSession().createQuery(jqpl);
 		return q.executeUpdate();
 	}
 
-	*/
-/**
+	/**
 	 * 执行带参数的jqpl
 	 *
 	 * @param jqpl
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public int executeHql(String jqpl, Map<String, Object> params) {
 		Query q = this.getCurrentSession().createQuery(jqpl);
 		if (params != null && !params.isEmpty()) {
@@ -468,15 +383,13 @@ public class BaseDAO<T> {
 		return q.executeUpdate();
 	}
 
-	*/
-/**
+	/**
 	 * 原始SQL和参数查询，返回List<Map<String,Object>>结果集
 	 *
 	 * @param sql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public List<Map> findListBySqlMap(String sql, Map<String, Object> params) {
 		if (null == sql || "".equals(sql)) {
 			return null;
@@ -492,14 +405,12 @@ public class BaseDAO<T> {
 		return q.getResultList();
 	}
 
-	*/
-/**
+	/**
 	 * 原始SQL查询，返回List<Map<String,Object>>结果集
 	 *
 	 * @param sql
 	 * @return
-	 *//*
-
+	 */
 	public List<Map> findListBySql(String sql) {
 		if (null == sql || "".equals(sql)) {
 			return null;
@@ -510,28 +421,24 @@ public class BaseDAO<T> {
 		return q.getResultList();
 	}
 
-	*/
-/**
+	/**
 	 * 执行原始SQL
 	 *
 	 * @param sql
 	 * @return
-	 *//*
-
+	 */
 	public int executeSql(String sql) {
 		Query q = this.getCurrentSession().createNativeQuery(sql);
 		return q.executeUpdate();
 	}
 
-	*/
-/**
+	/**
 	 * 执行带参数的原始SQL
 	 *
 	 * @param sql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public int executeSql(String sql, Map<String, Object> params) {
 		Query q = this.getCurrentSession().createNativeQuery(sql);
 		if (params != null && !params.isEmpty()) {
@@ -542,29 +449,25 @@ public class BaseDAO<T> {
 		return q.executeUpdate();
 	}
 
-	*/
-/**
+	/**
 	 * 原始SQL總計
 	 *
 	 * @param sql
 	 * @return
-	 *//*
-
+	 */
 	public Long countBySql(String sql) {
 		Query q = this.getCurrentSession().createNativeQuery(sql);
 		Object obj = q.getSingleResult();
 		return  Long.parseLong(obj.toString());
 	}
 
-	*/
-/**
+	/**
 	 * 原始SQL带参数总计
 	 *
 	 * @param sql
 	 * @param params
 	 * @return
-	 *//*
-
+	 */
 	public Long countBySql(String sql, Map<String, Object> params) {
 		Query q = this.getCurrentSession().createNativeQuery(sql);
 		if (params != null && !params.isEmpty()) {
@@ -576,15 +479,12 @@ public class BaseDAO<T> {
 		return  Long.parseLong(obj.toString());
 	}
 
-	*/
-/**
+	/**
 	 * 批量保存数据
 	 *
-	 * @param <T>
 	 * @param entitys
 	 *            要持久化的临时实体对象集合
-	 *//*
-
+	 */
 	public void batchSave(List<T> entitys) throws SQLException {
 		for (int i = 0; i < entitys.size(); i++) {
 			this.save(entitys.get(i));
@@ -599,30 +499,26 @@ public class BaseDAO<T> {
 		getCurrentSession().clear();
 	}
 
-	*/
-/**
+	/**
 	 * 总计
 	 *
 	 * @param finder
 	 * @return
-	 *//*
-
+	 */
 	public Long countQueryResult(Finder finder) {
 		Query query = getCurrentSession().createQuery(finder.getRowCountJpql());
 		finder.setParamsToQuery(query);
 		return (Long) query.getSingleResult();
 	}
 
-	*/
-/**
+	/**
 	 * JPQL分页方法
 	 *
 	 * @param finder
 	 * @param pageNo
 	 * @param pageSize
 	 * @return
-	 *//*
-
+	 */
 	public PageInfo getPageList(Finder finder, Integer pageNo, Integer pageSize) {
 		Long totalCount = countQueryResult(finder);
 		PageInfo page = new PageInfo();
@@ -660,14 +556,12 @@ public class BaseDAO<T> {
 		return page;
 	}
 
-	*/
-/**
+	/**
 	 * 获取条数
 	 *
 	 * @param finder
 	 * @return
-	 *//*
-
+	 */
 	private Long countSQLQueryResult(Finder finder) {
 		Query query = getCurrentSession().createNativeQuery(
 				finder.getRowCountJpql());
@@ -677,16 +571,14 @@ public class BaseDAO<T> {
 		return bi.longValue();
 	}
 
-	*/
-/**
+	/**
 	 * 原始SQL分页查询
 	 *
 	 * @param finder
 	 * @param pageNo
 	 * @param pageSize
 	 * @return
-	 *//*
-
+	 */
 	public PageInfo getSQLPageList(Finder finder, Integer pageNo,
 								   Integer pageSize) {
 		long totalCount = countSQLQueryResult(finder);
@@ -903,4 +795,3 @@ public class BaseDAO<T> {
 
 
 }
-*/
